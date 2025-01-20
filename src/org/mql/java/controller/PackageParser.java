@@ -12,8 +12,8 @@ public class PackageParser {
 
 	 public static void scan(String projectName, String packageName) {
 		 	String projectPath = "C:\\Users\\Chaimae\\eclipse-workspace\\" + projectName;
-	        String classPath = projectPath + "\\bin"; // Répertoire de sortie des classes
-	        String packagePath = packageName.replace(".", "\\"); // Conversion du package en chemin
+	        String classPath = projectPath + "\\bin";
+	        String packagePath = packageName.replace(".", "\\");
 	        String fullPath = classPath + "\\" + packagePath;
 
 	        File dir = new File(fullPath);
