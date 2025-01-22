@@ -21,20 +21,12 @@ public class ClassParser {
             Class<?> cls = Class.forName(src);
             info.add(new String[]{cls.getSimpleName()});
             info.add(new String[]{Modifier.toString(cls.getModifiers())});
-            info.add(new String[]{cls.getSuperclass() != null ? cls.getSuperclass().getSimpleName() : "Aucune"});
-            Class<?>[] interfaces = cls.getInterfaces();
-            StringBuilder interfacesList = new StringBuilder();
-            for (Class<?> iface : interfaces) {
-                interfacesList.append(iface.getSimpleName()).append(" ");
-            }
-            info.add(new String[]{"Interfaces", interfacesList.toString()});
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return info;
     }
 
-    // Extraction des champs de la classe
     public List<String[]> getClassFields() {
         List<String[]> fields = new ArrayList<>();
         try {
@@ -48,7 +40,6 @@ public class ClassParser {
         return fields;
     }
 
-    // Extraction des constructeurs de la classe
     public List<String[]> getClassConstructors() {
         List<String[]> constructors = new ArrayList<>();
         try {
@@ -66,7 +57,6 @@ public class ClassParser {
         return constructors;
     }
 
-    // Extraction des méthodes de la classe
     public List<String[]> getClassMethods() {
         List<String[]> methods = new ArrayList<>();
         try {
@@ -84,7 +74,6 @@ public class ClassParser {
         return methods;
     }
 
-    // Extraction des annotations de la classe
     public List<String[]> getClassAnnotations() {
         List<String[]> annotations = new ArrayList<>();
         try {
@@ -98,7 +87,6 @@ public class ClassParser {
         return annotations;
     }
 
-    // Extraction des énumérations de la classe (si applicable)
     public List<String[]> getClassEnumerations() {
         List<String[]> enums = new ArrayList<>();
         try {
@@ -114,15 +102,5 @@ public class ClassParser {
         return enums;
     }
 
-    // Extraction de l'ensemble des données (champs, méthodes, constructeurs, annotations, énumérations)
-    public List<List<String[]>> getAllClassData() {
-        List<List<String[]>> allData = new ArrayList<>();
-        allData.add(getClassInfo());
-        allData.add(getClassFields());
-        allData.add(getClassConstructors());
-        allData.add(getClassMethods());
-        allData.add(getClassAnnotations());
-        allData.add(getClassEnumerations());
-        return allData;
-    }
+   
 }
