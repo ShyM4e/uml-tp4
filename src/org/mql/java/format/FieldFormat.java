@@ -4,13 +4,11 @@ import java.util.List;
 import java.util.Vector;
 
 public class FieldFormat {
-	String name;
-	String type;
-	List<String> modifiers= new Vector<String>();
+	private String name;
+	private String type;
+	private List<String> modifiers= new Vector<String>();
 	
-	public FieldFormat() {
-		
-	}
+	
 
 	public FieldFormat(String name, String type, List<String> modifiers) {
 		super();
@@ -18,6 +16,44 @@ public class FieldFormat {
 		this.type = type;
 		this.modifiers = modifiers;
 	}
+	
+	
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public String getType() {
+		return type;
+	}
+
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+
+	public List<String> getModifiers() {
+		return modifiers;
+	}
+
+
+
+	public void setModifiers(List<String> modifiers) {
+		this.modifiers = modifiers;
+	}
+
+
 
 	@Override
 	public String toString() {

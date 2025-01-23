@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmi:version="2.5" xsi:schemaLocation="http://www.omg.org/spec/XMI/20131001 resources/schemas/XMI.xsd http://www.eclipse.org/uml2/5.0.0/UML resources/schemas/UML.xsd">
+  <uml:Model name="tp4-uml" xmi:id="model1">
+    <packagedElement name="org.mql.java.controller" xmi:id="pkg_org.mql.java.controller" xmi:type="uml:Package">
+      <packagedElement name="ClassParser" xmi:id="cls_ClassParser" xmi:type="uml:Class">
+        <ownedAttribute name="src" type="String" xmi:id="field_src" xmi:type="uml:Property"/>
+        <ownedAttribute name="cls" type="Class" xmi:id="field_cls" xmi:type="uml:Property"/>
+      </packagedElement>
+      <packagedElement name="PackageExplorer" xmi:id="cls_PackageExplorer" xmi:type="uml:Class">
+        <ownedAttribute name="foundPackages" type="List" xmi:id="field_foundPackages" xmi:type="uml:Property"/>
+      </packagedElement>
+      <packagedElement name="PackageParser" xmi:id="cls_PackageParser" xmi:type="uml:Class"/>
+      <packagedElement name="ProjectParser" xmi:id="cls_ProjectParser" xmi:type="uml:Class">
+        <ownedAttribute name="projectName" type="String" xmi:id="field_projectName" xmi:type="uml:Property"/>
+      </packagedElement>
+      <packagedElement name="RelationshipExtractor" xmi:id="cls_RelationshipExtractor" xmi:type="uml:Class"/>
+    </packagedElement>
+    <packagedElement name="org.mql.java.examples" xmi:id="pkg_org.mql.java.examples" xmi:type="uml:Package">
+      <packagedElement name="Examples" xmi:id="cls_Examples" xmi:type="uml:Class"/>
+    </packagedElement>
+    <packagedElement name="org.mql.java.format" xmi:id="pkg_org.mql.java.format" xmi:type="uml:Package">
+      <packagedElement name="ClassFormat" xmi:id="cls_ClassFormat" xmi:type="uml:Class">
+        <ownedAttribute name="name" type="String" xmi:id="field_name" xmi:type="uml:Property"/>
+        <ownedAttribute name="modifiers" type="List" xmi:id="field_modifiers" xmi:type="uml:Property"/>
+        <ownedAttribute name="fields" type="List" xmi:id="field_fields" xmi:type="uml:Property"/>
+        <ownedAttribute name="methods" type="List" xmi:id="field_methods" xmi:type="uml:Property"/>
+        <ownedAttribute name="relationships" type="List" xmi:id="field_relationships" xmi:type="uml:Property"/>
+      </packagedElement>
+      <packagedElement name="FieldFormat" xmi:id="cls_FieldFormat" xmi:type="uml:Class">
+        <ownedAttribute name="name" type="String" xmi:id="field_name" xmi:type="uml:Property"/>
+        <ownedAttribute name="type" type="String" xmi:id="field_type" xmi:type="uml:Property"/>
+        <ownedAttribute name="modifiers" type="List" xmi:id="field_modifiers" xmi:type="uml:Property"/>
+      </packagedElement>
+      <packagedElement name="MethodFormat" xmi:id="cls_MethodFormat" xmi:type="uml:Class">
+        <ownedAttribute name="name" type="String" xmi:id="field_name" xmi:type="uml:Property"/>
+        <ownedAttribute name="returnType" type="String" xmi:id="field_returnType" xmi:type="uml:Property"/>
+        <ownedAttribute name="modifiers" type="List" xmi:id="field_modifiers" xmi:type="uml:Property"/>
+        <ownedAttribute name="paramType" type="List" xmi:id="field_paramType" xmi:type="uml:Property"/>
+      </packagedElement>
+      <packagedElement name="PackageFormat" xmi:id="cls_PackageFormat" xmi:type="uml:Class">
+        <ownedAttribute name="name" type="String" xmi:id="field_name" xmi:type="uml:Property"/>
+        <ownedAttribute name="classes" type="List" xmi:id="field_classes" xmi:type="uml:Property"/>
+      </packagedElement>
+      <packagedElement name="ProjectFormat" xmi:id="cls_ProjectFormat" xmi:type="uml:Class">
+        <ownedAttribute name="name" type="String" xmi:id="field_name" xmi:type="uml:Property"/>
+        <ownedAttribute name="packages" type="List" xmi:id="field_packages" xmi:type="uml:Property"/>
+      </packagedElement>
+      <packagedElement name="RelationshipFormat" xmi:id="cls_RelationshipFormat" xmi:type="uml:Class">
+        <ownedAttribute name="fromClass" type="String" xmi:id="field_fromClass" xmi:type="uml:Property"/>
+        <ownedAttribute name="toClass" type="String" xmi:id="field_toClass" xmi:type="uml:Property"/>
+        <ownedAttribute name="relationshipType" type="String" xmi:id="field_relationshipType" xmi:type="uml:Property"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement name="org.mql.java.models" xmi:id="pkg_org.mql.java.models" xmi:type="uml:Package">
+      <packagedElement name="Iter" xmi:id="cls_Iter" xmi:type="uml:Class">
+        <ownedAttribute name="pointer" type="LinkedList" xmi:id="field_pointer" xmi:type="uml:Property"/>
+        <ownedAttribute name="this$0" type="LinkedList" xmi:id="field_this$0" xmi:type="uml:Property"/>
+        <packagedElement memberEnd="Iter Iterator" xmi:id="rel_Iter_Iterator" xmi:type="uml:Association"/>
+      </packagedElement>
+      <packagedElement name="LinkedList" xmi:id="cls_LinkedList" xmi:type="uml:Class">
+        <ownedAttribute name="value" type="Object" xmi:id="field_value" xmi:type="uml:Property"/>
+        <ownedAttribute name="next" type="LinkedList" xmi:id="field_next" xmi:type="uml:Property"/>
+        <packagedElement memberEnd="LinkedList List" xmi:id="rel_LinkedList_List" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="LinkedList Iterable" xmi:id="rel_LinkedList_Iterable" xmi:type="uml:Association"/>
+      </packagedElement>
+      <packagedElement name="List" xmi:id="cls_List" xmi:type="uml:Class"/>
+    </packagedElement>
+    <packagedElement name="org.mql.java.xmi" xmi:id="pkg_org.mql.java.xmi" xmi:type="uml:Package">
+      <packagedElement name="XMITransformer" xmi:id="cls_XMITransformer" xmi:type="uml:Class">
+        <packagedElement memberEnd="XMITransformer Document" xmi:id="rel_XMITransformer_Document" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="XMITransformer PackageFormat" xmi:id="rel_XMITransformer_PackageFormat" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="XMITransformer ProjectFormat" xmi:id="rel_XMITransformer_ProjectFormat" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="XMITransformer Document" xmi:id="rel_XMITransformer_Document" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="XMITransformer ClassFormat" xmi:id="rel_XMITransformer_ClassFormat" xmi:type="uml:Association"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement name="org.mql.java.xml" xmi:id="pkg_org.mql.java.xml" xmi:type="uml:Package">
+      <packagedElement name="ProjectXMLParser" xmi:id="cls_ProjectXMLParser" xmi:type="uml:Class"/>
+      <packagedElement name="XMLNode" xmi:id="cls_XMLNode" xmi:type="uml:Class">
+        <ownedAttribute name="node" type="Node" xmi:id="field_node" xmi:type="uml:Property"/>
+        <packagedElement memberEnd="XMLNode Node" xmi:id="rel_XMLNode_Node" xmi:type="uml:Association"/>
+      </packagedElement>
+      <packagedElement name="XMLTransformer" xmi:id="cls_XMLTransformer" xmi:type="uml:Class">
+        <packagedElement memberEnd="XMLTransformer Document" xmi:id="rel_XMLTransformer_Document" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="XMLTransformer PackageFormat" xmi:id="rel_XMLTransformer_PackageFormat" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="XMLTransformer ProjectFormat" xmi:id="rel_XMLTransformer_ProjectFormat" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="XMLTransformer Document" xmi:id="rel_XMLTransformer_Document" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="XMLTransformer ClassFormat" xmi:id="rel_XMLTransformer_ClassFormat" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="XMLTransformer Document" xmi:id="rel_XMLTransformer_Document" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="XMLTransformer FieldFormat" xmi:id="rel_XMLTransformer_FieldFormat" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="XMLTransformer Document" xmi:id="rel_XMLTransformer_Document" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="XMLTransformer RelationshipFormat" xmi:id="rel_XMLTransformer_RelationshipFormat" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="XMLTransformer Document" xmi:id="rel_XMLTransformer_Document" xmi:type="uml:Association"/>
+        <packagedElement memberEnd="XMLTransformer MethodFormat" xmi:id="rel_XMLTransformer_MethodFormat" xmi:type="uml:Association"/>
+      </packagedElement>
+    </packagedElement>
+  </uml:Model>
+</xmi:XMI>
