@@ -26,42 +26,43 @@ public class ProjectParser {
         for (String pkg : packageNames) {
             List<ClassFormat> classes = new ArrayList<>();
             List<String> classNames = PackageParser.scan(projectName, pkg);
-
-            for (String cls : classNames) {
-                ClassParser cp = new ClassParser(cls);
-                List<String[]> infos = cp.getClassInfo();
-                String className = infos.get(0)[0];
-                String classModifiers = infos.get(1)[0];
-
-                List<FieldFormat> fields = new ArrayList<>();
-                List<MethodFormat> methods = new ArrayList<>();
-                List<RelationshipFormat> relationships = new ArrayList<>();
-
-                // Extract fields
-                for (String[] field : cp.getClassFields()) {
-                    fields.add(new FieldFormat(field[0], field[2], List.of(field[1].split(" "))));
-                }
-
-                // Extract methods
-                for (String[] method : cp.getClassMethods()) {
-                    methods.add(new MethodFormat(method[0], method[3], List.of(method[1].split(" ")), List.of(method[2].trim().split(" "))));
-                }
-
-                // Extract relationships
-                for (String[] relationship : cp.extractRelationships()) {
-                    relationships.add(new RelationshipFormat(className, relationship[1], relationship[0]));
-                }
-
-                // Create ClassFormat object
-                ClassFormat classFormat = new ClassFormat(className, List.of(classModifiers.split(" ")), fields, methods, relationships);
-                classes.add(classFormat);
+            if(!classNames.isEmpty()) {
+	            for (String cls : classNames) {
+	                ClassParser cp = new ClassParser(cls,projectName+"\\bin");
+	                List<String[]> infos = cp.getClassInfo();
+	                String className = infos.get(0)[0];
+	                String classModifiers = infos.get(1)[0];
+	
+	                List<FieldFormat> fields = new ArrayList<>();
+	                List<MethodFormat> methods = new ArrayList<>();
+	                List<RelationshipFormat> relationships = new ArrayList<>();
+	
+	              
+	                for (String[] field : cp.getClassFields()) {
+	                    fields.add(new FieldFormat(field[0], field[2], List.of(field[1].split(" "))));
+	                }
+	
+	              
+	                for (String[] method : cp.getClassMethods()) {
+	                    methods.add(new MethodFormat(method[0], method[3], List.of(method[1].split(" ")), List.of(method[2].trim().split(" "))));
+	                }
+	
+	          
+	                for (String[] relationship : cp.extractRelationships()) {
+	                    relationships.add(new RelationshipFormat(className, relationship[1], relationship[0]));
+	                }
+	
+	            
+	                ClassFormat classFormat = new ClassFormat(className, List.of(classModifiers.split(" ")), fields, methods, relationships);
+	                classes.add(classFormat);
             }
 
-            // Create PackageFormat object
+       
             packages.add(new PackageFormat(pkg, classes));
+            }
         }
 
-        // Create and return ProjectFormat object
+       
         return new ProjectFormat(projectName, packages);
     }
 }

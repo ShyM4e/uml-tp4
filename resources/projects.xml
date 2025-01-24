@@ -1,399 +1,1897 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project name="tp4-uml">
-  <package name="org.mql.java.controller">
-    <class modifiers="public" name="ClassParser">
-      <field modifiers="public" name="src" type="String"/>
-      <field modifiers="" name="cls" type="Class"/>
-      <method modifiers="public" name="getClassInfo" returnType="List">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="extractRelationships" returnType="List">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="getClassConstructors" returnType="List">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="getClassAnnotations" returnType="List">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="getClassEnumerations" returnType="List">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="getClassFields" returnType="List">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="getClassMethods" returnType="List">
-        <parameter type=""/>
-      </method>
-    </class>
-    <class modifiers="public" name="PackageExplorer">
-      <field modifiers="private" name="foundPackages" type="List"/>
-      <method modifiers="public static" name="main" returnType="void">
-        <parameter type="String[]"/>
-      </method>
-      <method modifiers="public" name="scan" returnType="void">
-        <parameter type="String"/>
-      </method>
-      <method modifiers="public" name="scanSubPackages" returnType="void">
-        <parameter type="File"/>
-        <parameter type="String"/>
-      </method>
-      <method modifiers="public" name="getFoundPackages" returnType="List">
-        <parameter type=""/>
-      </method>
-    </class>
-    <class modifiers="public" name="PackageParser">
-      <method modifiers="public static" name="scan" returnType="List">
-        <parameter type="String"/>
-        <parameter type="String"/>
-      </method>
-    </class>
-    <class modifiers="public" name="ProjectParser">
-      <field modifiers="private" name="projectName" type="String"/>
-      <method modifiers="public" name="parseProject" returnType="ProjectFormat">
-        <parameter type=""/>
-      </method>
-    </class>
-    <class modifiers="public" name="RelationshipExtractor">
-      <method modifiers="public static" name="main" returnType="void">
-        <parameter type="String[]"/>
-      </method>
-      <method modifiers="public static" name="extractRelationships" returnType="List">
-        <parameter type="String"/>
-      </method>
-    </class>
-  </package>
-  <package name="org.mql.java.examples">
-    <class modifiers="public" name="Examples">
-      <method modifiers="public static" name="main" returnType="void">
-        <parameter type="String[]"/>
-      </method>
-      <method modifiers="" name="exp04" returnType="void">
-        <parameter type=""/>
-      </method>
-      <method modifiers="" name="exp03" returnType="void">
-        <parameter type=""/>
-      </method>
-      <method modifiers="" name="exp01" returnType="void">
-        <parameter type=""/>
-      </method>
-      <method modifiers="" name="exp02" returnType="void">
-        <parameter type=""/>
-      </method>
-    </class>
-  </package>
-  <package name="org.mql.java.format">
-    <class modifiers="public" name="ClassFormat">
-      <field modifiers="private" name="name" type="String"/>
-      <field modifiers="private" name="modifiers" type="List"/>
-      <field modifiers="private" name="fields" type="List"/>
-      <field modifiers="private" name="methods" type="List"/>
-      <field modifiers="private" name="relationships" type="List"/>
-      <method modifiers="public" name="getName" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="toString" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="getModifiers" returnType="List">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="getFields" returnType="List">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="getMethods" returnType="List">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="setName" returnType="void">
-        <parameter type="String"/>
-      </method>
-      <method modifiers="public" name="setFields" returnType="void">
-        <parameter type="List"/>
-      </method>
-      <method modifiers="public" name="setModifiers" returnType="void">
-        <parameter type="List"/>
-      </method>
-      <method modifiers="public" name="setRelationships" returnType="void">
-        <parameter type="List"/>
-      </method>
-      <method modifiers="public" name="getRelationships" returnType="List">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="setMethods" returnType="void">
-        <parameter type="List"/>
-      </method>
-    </class>
-    <class modifiers="public" name="FieldFormat">
-      <field modifiers="private" name="name" type="String"/>
-      <field modifiers="private" name="type" type="String"/>
-      <field modifiers="private" name="modifiers" type="List"/>
-      <method modifiers="public" name="getName" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="toString" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="getModifiers" returnType="List">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="setName" returnType="void">
-        <parameter type="String"/>
-      </method>
-      <method modifiers="public" name="getType" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="setModifiers" returnType="void">
-        <parameter type="List"/>
-      </method>
-      <method modifiers="public" name="setType" returnType="void">
-        <parameter type="String"/>
-      </method>
-    </class>
-    <class modifiers="public" name="MethodFormat">
-      <field modifiers="private" name="name" type="String"/>
-      <field modifiers="private" name="returnType" type="String"/>
-      <field modifiers="private" name="modifiers" type="List"/>
-      <field modifiers="private" name="paramType" type="List"/>
-      <method modifiers="public" name="getName" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="toString" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="getModifiers" returnType="List">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="getReturnType" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="setName" returnType="void">
-        <parameter type="String"/>
-      </method>
-      <method modifiers="public" name="setModifiers" returnType="void">
-        <parameter type="List"/>
-      </method>
-      <method modifiers="public" name="setParamType" returnType="void">
-        <parameter type="List"/>
-      </method>
-      <method modifiers="public" name="getParamType" returnType="List">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="setReturnType" returnType="void">
-        <parameter type="String"/>
-      </method>
-    </class>
-    <class modifiers="public" name="PackageFormat">
-      <field modifiers="private" name="name" type="String"/>
-      <field modifiers="private" name="classes" type="List"/>
-      <method modifiers="public" name="getName" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="toString" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="getClasses" returnType="List">
-        <parameter type=""/>
-      </method>
-    </class>
-    <class modifiers="public" name="ProjectFormat">
-      <field modifiers="private" name="name" type="String"/>
-      <field modifiers="private" name="packages" type="List"/>
-      <method modifiers="public" name="getName" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="toString" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="getPackages" returnType="List">
-        <parameter type=""/>
-      </method>
-    </class>
-    <class modifiers="public" name="RelationshipFormat">
-      <field modifiers="private" name="fromClass" type="String"/>
-      <field modifiers="private" name="toClass" type="String"/>
-      <field modifiers="private" name="relationshipType" type="String"/>
-      <method modifiers="public" name="getFromClass" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="toString" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="setRelationshipType" returnType="void">
-        <parameter type="String"/>
-      </method>
-      <method modifiers="public" name="getRelationshipType" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="setFromClass" returnType="void">
-        <parameter type="String"/>
-      </method>
-      <method modifiers="public" name="getToClass" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="setToClass" returnType="void">
-        <parameter type="String"/>
-      </method>
-    </class>
-  </package>
-  <package name="org.mql.java.models">
-    <class modifiers="" name="Iter">
-      <field modifiers="private" name="pointer" type="LinkedList"/>
-      <field modifiers="final" name="this$0" type="LinkedList"/>
-      <method modifiers="public" name="hasNext" returnType="boolean">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="next" returnType="Object">
-        <parameter type=""/>
-      </method>
-      <relationship from="Iter" to="Iterator" type="Implémentation"/>
-    </class>
-    <class modifiers="public" name="LinkedList">
-      <field modifiers="private" name="value" type="Object"/>
-      <field modifiers="private" name="next" type="LinkedList"/>
-      <method modifiers="public" name="remove" returnType="Object">
-        <parameter type="int"/>
-      </method>
-      <method modifiers="public" name="size" returnType="int">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="get" returnType="Object">
-        <parameter type="int"/>
-      </method>
-      <method modifiers="public" name="add" returnType="void">
-        <parameter type="Object"/>
-      </method>
-      <method modifiers="public" name="iterator" returnType="Iterator">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="set" returnType="void">
-        <parameter type="int"/>
-        <parameter type="Object"/>
-      </method>
-      <relationship from="LinkedList" to="List" type="Implémentation"/>
-      <relationship from="LinkedList" to="Iterable" type="Implémentation"/>
-    </class>
-    <class modifiers="public abstract interface" name="List">
-      <method modifiers="public abstract" name="remove" returnType="Object">
-        <parameter type="int"/>
-      </method>
-      <method modifiers="public abstract" name="size" returnType="int">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public abstract" name="get" returnType="Object">
-        <parameter type="int"/>
-      </method>
-      <method modifiers="public abstract" name="add" returnType="void">
-        <parameter type="Object"/>
-      </method>
-      <method modifiers="public abstract" name="set" returnType="void">
-        <parameter type="int"/>
-        <parameter type="Object"/>
-      </method>
-    </class>
-  </package>
-  <package name="org.mql.java.xmi">
-    <class modifiers="public" name="XMITransformer">
-      <method modifiers="private static" name="createPackageElement" returnType="Element">
-        <parameter type="Document"/>
-        <parameter type="PackageFormat"/>
-      </method>
-      <method modifiers="public static" name="transformToXMI" returnType="void">
-        <parameter type="ProjectFormat"/>
-        <parameter type="String"/>
-      </method>
-      <method modifiers="private static" name="createClassElement" returnType="Element">
-        <parameter type="Document"/>
-        <parameter type="ClassFormat"/>
-      </method>
-      <relationship from="XMITransformer" to="Document" type="Utilisation"/>
-      <relationship from="XMITransformer" to="PackageFormat" type="Utilisation"/>
-      <relationship from="XMITransformer" to="ProjectFormat" type="Utilisation"/>
-      <relationship from="XMITransformer" to="Document" type="Utilisation"/>
-      <relationship from="XMITransformer" to="ClassFormat" type="Utilisation"/>
-    </class>
-  </package>
-  <package name="org.mql.java.xml">
-    <class modifiers="public" name="ProjectXMLParser">
-      <method modifiers="public" name="parse" returnType="ProjectFormat">
-        <parameter type="String"/>
-      </method>
-      <method modifiers="private" name="parseMethod" returnType="MethodFormat">
-        <parameter type="XMLNode"/>
-      </method>
-      <method modifiers="private" name="parseField" returnType="FieldFormat">
-        <parameter type="XMLNode"/>
-      </method>
-      <method modifiers="private" name="parseModifiers" returnType="List">
-        <parameter type="String"/>
-      </method>
-      <method modifiers="private" name="parsePackage" returnType="PackageFormat">
-        <parameter type="XMLNode"/>
-      </method>
-      <method modifiers="private" name="parseRelationship" returnType="RelationshipFormat">
-        <parameter type="XMLNode"/>
-      </method>
-      <method modifiers="private" name="parseClass" returnType="ClassFormat">
-        <parameter type="XMLNode"/>
-      </method>
-    </class>
-    <class modifiers="public" name="XMLNode">
-      <field modifiers="private" name="node" type="Node"/>
-      <method modifiers="public" name="getName" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="getValue" returnType="String">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="child" returnType="XMLNode">
-        <parameter type="String"/>
-      </method>
-      <method modifiers="public" name="attribute" returnType="String">
-        <parameter type="String"/>
-      </method>
-      <method modifiers="public" name="children" returnType="XMLNode[]">
-        <parameter type=""/>
-      </method>
-      <method modifiers="public" name="intAttribute" returnType="int">
-        <parameter type="String"/>
-      </method>
-      <relationship from="XMLNode" to="Node" type="Agrégation"/>
-    </class>
-    <class modifiers="public" name="XMLTransformer">
-      <method modifiers="private static" name="createPackageElement" returnType="Element">
-        <parameter type="Document"/>
-        <parameter type="PackageFormat"/>
-      </method>
-      <method modifiers="public static" name="transformToXML" returnType="void">
-        <parameter type="ProjectFormat"/>
-        <parameter type="String"/>
-      </method>
-      <method modifiers="private static" name="createClassElement" returnType="Element">
-        <parameter type="Document"/>
-        <parameter type="ClassFormat"/>
-      </method>
-      <method modifiers="private static" name="createFieldElement" returnType="Element">
-        <parameter type="Document"/>
-        <parameter type="FieldFormat"/>
-      </method>
-      <method modifiers="private static" name="createRelationshipElement" returnType="Element">
-        <parameter type="Document"/>
-        <parameter type="RelationshipFormat"/>
-      </method>
-      <method modifiers="private static" name="createMethodElement" returnType="Element">
-        <parameter type="Document"/>
-        <parameter type="MethodFormat"/>
-      </method>
-      <relationship from="XMLTransformer" to="Document" type="Utilisation"/>
-      <relationship from="XMLTransformer" to="PackageFormat" type="Utilisation"/>
-      <relationship from="XMLTransformer" to="ProjectFormat" type="Utilisation"/>
-      <relationship from="XMLTransformer" to="Document" type="Utilisation"/>
-      <relationship from="XMLTransformer" to="ClassFormat" type="Utilisation"/>
-      <relationship from="XMLTransformer" to="Document" type="Utilisation"/>
-      <relationship from="XMLTransformer" to="FieldFormat" type="Utilisation"/>
-      <relationship from="XMLTransformer" to="Document" type="Utilisation"/>
-      <relationship from="XMLTransformer" to="RelationshipFormat" type="Utilisation"/>
-      <relationship from="XMLTransformer" to="Document" type="Utilisation"/>
-      <relationship from="XMLTransformer" to="MethodFormat" type="Utilisation"/>
-    </class>
-  </package>
-</project>
+<projects>
+      
+  
+  
+  <project name="C:\Users\Chaimae\eclipse-workspace\p05-functional-programming">
+            
+    
+    <package name="org.mql.java.fp">
+                  
+      
+      <class modifiers="" name="">
+                        
+        
+        <field modifiers="final" name="this$0" type="LambdaExpression"/>
+                        
+        
+        <method modifiers="public" name="actionPerformed" returnType="void">
+                              
+          
+          <parameter type="ActionEvent"/>
+                            
+        
+        </method>
+                        
+        
+        <relationship from="" to="ActionListener" type="Implémentation"/>
+                      
+      
+      </class>
+                  
+      
+      <class modifiers="" name="">
+                        
+        
+        <field modifiers="final" name="this$0" type="LambdaExpression"/>
+                        
+        
+        <method modifiers="public" name="test" returnType="boolean">
+                              
+          
+          <parameter type="Author"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public volatile" name="test" returnType="boolean">
+                              
+          
+          <parameter type="Object"/>
+                            
+        
+        </method>
+                        
+        
+        <relationship from="" to="Predicate" type="Implémentation"/>
+                        
+        
+        <relationship from="" to="Author" type="Utilisation"/>
+                      
+      
+      </class>
+                  
+      
+      <class modifiers="" name="">
+                        
+        
+        <field modifiers="final" name="this$0" type="LambdaExpression"/>
+                        
+        
+        <method modifiers="public" name="apply" returnType="String">
+                              
+          
+          <parameter type="Author"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public volatile" name="apply" returnType="Object">
+                              
+          
+          <parameter type="Object"/>
+                            
+        
+        </method>
+                        
+        
+        <relationship from="" to="Function" type="Implémentation"/>
+                        
+        
+        <relationship from="" to="Author" type="Utilisation"/>
+                      
+      
+      </class>
+                  
+      
+      <class modifiers="" name="">
+                        
+        
+        <field modifiers="final" name="this$0" type="LambdaExpression"/>
+                        
+        
+        <method modifiers="public" name="compare" returnType="int">
+                              
+          
+          <parameter type="String"/>
+                              
+          
+          <parameter type="String"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public volatile" name="compare" returnType="int">
+                              
+          
+          <parameter type="Object"/>
+                              
+          
+          <parameter type="Object"/>
+                            
+        
+        </method>
+                        
+        
+        <relationship from="" to="Comparator" type="Implémentation"/>
+                      
+      
+      </class>
+                  
+      
+      <class modifiers="" name="">
+                        
+        
+        <field modifiers="final" name="this$0" type="LambdaExpression"/>
+                        
+        
+        <method modifiers="public" name="accept" returnType="void">
+                              
+          
+          <parameter type="String"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public volatile" name="accept" returnType="void">
+                              
+          
+          <parameter type="Object"/>
+                            
+        
+        </method>
+                        
+        
+        <relationship from="" to="Consumer" type="Implémentation"/>
+                      
+      
+      </class>
+                  
+      
+      <class modifiers="public" name="LambdaExpression">
+                        
+        
+        <method modifiers="public static" name="main" returnType="void">
+                              
+          
+          <parameter type="String[]"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="test" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp01" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp02" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp03" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp04" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp10" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp06" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp08" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$0" returnType="void">
+                              
+          
+          <parameter type="ActionEvent"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$1" returnType="void">
+                              
+          
+          <parameter type="ActionEvent"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp07" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp09" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp05" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$10" returnType="boolean">
+                              
+          
+          <parameter type="Integer"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$2" returnType="void">
+                              
+          
+          <parameter type="String"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$7" returnType="boolean">
+                              
+          
+          <parameter type="Integer"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$5" returnType="Integer">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$6" returnType="Integer">
+                              
+          
+          <parameter type="DataManager"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$9" returnType="boolean">
+                              
+          
+          <parameter type="Integer"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$11" returnType="boolean">
+                              
+          
+          <parameter type="Author"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$3" returnType="void">
+                              
+          
+          <parameter type="String"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$8" returnType="boolean">
+                              
+          
+          <parameter type="Integer"/>
+                            
+        
+        </method>
+                        
+        
+        <relationship from="LambdaExpression" to="DataManager" type="Utilisation"/>
+                        
+        
+        <relationship from="LambdaExpression" to="Author" type="Utilisation"/>
+                      
+      
+      </class>
+                  
+      
+      <class modifiers="public" name="MethodReferences">
+                        
+        
+        <method modifiers="public static" name="main" returnType="void">
+                              
+          
+          <parameter type="String[]"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public" name="print" returnType="void">
+                              
+          
+          <parameter type="String"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="generate" returnType="Object">
+                              
+          
+          <parameter type="BiFunction"/>
+                              
+          
+          <parameter type="int"/>
+                              
+          
+          <parameter type="int"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="arbitraryInstanceMethodReference" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="particularInstanceMethodRefrence" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="staticMethodReference" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="constructorReference" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                      
+      
+      </class>
+                  
+      
+      <class modifiers="public" name="OptionalExamples">
+                        
+        
+        <method modifiers="public static" name="main" returnType="void">
+                              
+          
+          <parameter type="String[]"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp01" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                      
+      
+      </class>
+                  
+      
+      <class modifiers="public" name="Streams">
+                        
+        
+        <method modifiers="public static" name="main" returnType="void">
+                              
+          
+          <parameter type="String[]"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp01" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp02" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp03" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp04" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp06" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$0" returnType="boolean">
+                              
+          
+          <parameter type="Integer"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp05" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$10" returnType="boolean">
+                              
+          
+          <parameter type="Integer"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$7" returnType="boolean">
+                              
+          
+          <parameter type="Integer"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$5" returnType="Integer">
+                              
+          
+          <parameter type="Integer"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$3" returnType="Integer">
+                              
+          
+          <parameter type="Double"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private static" name="lambda$8" returnType="Integer[]">
+                              
+          
+          <parameter type="int"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp03_2" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp03_3" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp01_2" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="" name="exp02_2" returnType="void">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                      
+      
+      </class>
+                
+    
+    </package>
+            
+    
+    <package name="org.mql.java.fp.functions">
+                  
+      
+      <class modifiers="public abstract interface" name="Filter">
+                        
+        
+        <method modifiers="public abstract" name="accept" returnType="boolean">
+                              
+          
+          <parameter type="Object"/>
+                            
+        
+        </method>
+                      
+      
+      </class>
+                  
+      
+      <class modifiers="public abstract interface" name="Logger">
+                        
+        
+        <method modifiers="public abstract" name="log" returnType="void">
+                              
+          
+          <parameter type="String"/>
+                            
+        
+        </method>
+                      
+      
+      </class>
+                  
+      
+      <class modifiers="public abstract interface" name="Producer">
+                        
+        
+        <method modifiers="public abstract" name="get" returnType="String">
+                              
+          
+          <parameter type="String"/>
+                              
+          
+          <parameter type="int"/>
+                              
+          
+          <parameter type="int"/>
+                            
+        
+        </method>
+                      
+      
+      </class>
+                
+    
+    </package>
+            
+    
+    <package name="org.mql.java.fp.models">
+                  
+      
+      <class modifiers="public" name="Author">
+                        
+        
+        <field modifiers="private" name="name" type="String"/>
+                        
+        
+        <field modifiers="private" name="yearBorn" type="int"/>
+                        
+        
+        <method modifiers="public" name="getName" returnType="String">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public" name="toString" returnType="String">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public" name="accept" returnType="boolean">
+                              
+          
+          <parameter type="BiFunction"/>
+                              
+          
+          <parameter type="String"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public" name="setName" returnType="void">
+                              
+          
+          <parameter type="String"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public" name="setYearBorn" returnType="void">
+                              
+          
+          <parameter type="int"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public" name="getYearBorn" returnType="int">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                      
+      
+      </class>
+                
+    
+    </package>
+            
+    
+    <package name="org.mql.java.fp.services">
+                  
+      
+      <class modifiers="public" name="DataGenerator">
+                        
+        
+        <method modifiers="public static" name="generateInt" returnType="int">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public static" name="generateInt" returnType="int">
+                              
+          
+          <parameter type="int"/>
+                              
+          
+          <parameter type="int"/>
+                            
+        
+        </method>
+                      
+      
+      </class>
+                  
+      
+      <class modifiers="public" name="DataManager">
+                        
+        
+        <field modifiers="private" name="data" type="List"/>
+                        
+        
+        <field modifiers="private" name="logger" type="Logger"/>
+                        
+        
+        <method modifiers="public" name="remove" returnType="Object">
+                              
+          
+          <parameter type="int"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public" name="size" returnType="int">
+                              
+          
+          <parameter type=""/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="private" name="log" returnType="void">
+                              
+          
+          <parameter type="String"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public" name="extract" returnType="List">
+                              
+          
+          <parameter type="Predicate"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public" name="add" returnType="void">
+                              
+          
+          <parameter type="Object"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public" name="setLogger" returnType="void">
+                              
+          
+          <parameter type="Logger"/>
+                            
+        
+        </method>
+                        
+        
+        <method modifiers="public" name="select" returnType="List">
+                              
+          
+          <parameter type="Filter"/>
+                            
+        
+        </method>
+                        
+        
+        <relationship from="DataManager" to="Logger" type="Agrégation"/>
+                        
+        
+        <relationship from="DataManager" to="Logger" type="Utilisation"/>
+                        
+        
+        <relationship from="DataManager" to="Filter" type="Utilisation"/>
+                      
+      
+      </class>
+                
+    
+    </package>
+          
+  
+  </project>
+    
+  
+  <project name="C:\Users\Chaimae\eclipse-workspace\tp4-uml">
+        
+    <package name="org.mql.java.controller">
+            
+      <class modifiers="public" name="ClassParser">
+                
+        <field modifiers="public" name="src" type="String"/>
+                
+        <field modifiers="" name="cls" type="Class"/>
+                
+        <method modifiers="public" name="getClassAnnotations" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getClassConstructors" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="extractRelationships" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getClassEnumerations" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getClassMethods" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getClassFields" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getClassInfo" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+              
+      </class>
+            
+      <class modifiers="public" name="CustomClassLoader">
+                
+        <field modifiers="private" name="classPath" type="String"/>
+                
+        <method modifiers="protected" name="findClass" returnType="Class">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <relationship from="CustomClassLoader" to="ClassLoader" type="Extension"/>
+              
+      </class>
+            
+      <class modifiers="public" name="PackageExplorer">
+                
+        <field modifiers="private" name="foundPackages" type="List"/>
+                
+        <method modifiers="public" name="addPackageAndScanSubPackages" returnType="void">
+                    
+          <parameter type="File"/>
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getFoundPackages" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public static" name="main" returnType="void">
+                    
+          <parameter type="String[]"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="scan" returnType="void">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+              
+      </class>
+            
+      <class modifiers="public" name="PackageParser">
+                
+        <method modifiers="public static" name="scan" returnType="List">
+                    
+          <parameter type="String"/>
+                    
+          <parameter type="String"/>
+                  
+        </method>
+              
+      </class>
+            
+      <class modifiers="public" name="ProjectParser">
+                
+        <field modifiers="private" name="projectName" type="String"/>
+                
+        <method modifiers="public" name="parseProject" returnType="ProjectFormat">
+                    
+          <parameter type=""/>
+                  
+        </method>
+              
+      </class>
+          
+    </package>
+        
+    <package name="org.mql.java.examples">
+            
+      <class modifiers="public" name="Examples">
+                
+        <method modifiers="" name="exp04" returnType="void">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="" name="exp01" returnType="void">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="" name="exp03" returnType="void">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="" name="exp02" returnType="void">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public static" name="main" returnType="void">
+                    
+          <parameter type="String[]"/>
+                  
+        </method>
+              
+      </class>
+          
+    </package>
+        
+    <package name="org.mql.java.format">
+            
+      <class modifiers="public" name="ClassFormat">
+                
+        <field modifiers="private" name="name" type="String"/>
+                
+        <field modifiers="private" name="modifiers" type="List"/>
+                
+        <field modifiers="private" name="fields" type="List"/>
+                
+        <field modifiers="private" name="methods" type="List"/>
+                
+        <field modifiers="private" name="relationships" type="List"/>
+                
+        <method modifiers="public" name="setRelationships" returnType="void">
+                    
+          <parameter type="List"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="setModifiers" returnType="void">
+                    
+          <parameter type="List"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getRelationships" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="setMethods" returnType="void">
+                    
+          <parameter type="List"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getName" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="toString" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getModifiers" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getFields" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getMethods" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="setName" returnType="void">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="setFields" returnType="void">
+                    
+          <parameter type="List"/>
+                  
+        </method>
+              
+      </class>
+            
+      <class modifiers="public" name="FieldFormat">
+                
+        <field modifiers="private" name="name" type="String"/>
+                
+        <field modifiers="private" name="type" type="String"/>
+                
+        <field modifiers="private" name="modifiers" type="List"/>
+                
+        <method modifiers="public" name="setModifiers" returnType="void">
+                    
+          <parameter type="List"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="setType" returnType="void">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getName" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="toString" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getModifiers" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="setName" returnType="void">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getType" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+              
+      </class>
+            
+      <class modifiers="public" name="MethodFormat">
+                
+        <field modifiers="private" name="name" type="String"/>
+                
+        <field modifiers="private" name="returnType" type="String"/>
+                
+        <field modifiers="private" name="modifiers" type="List"/>
+                
+        <field modifiers="private" name="paramType" type="List"/>
+                
+        <method modifiers="public" name="setModifiers" returnType="void">
+                    
+          <parameter type="List"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="setParamType" returnType="void">
+                    
+          <parameter type="List"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="setReturnType" returnType="void">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getParamType" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getName" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="toString" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getModifiers" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getReturnType" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="setName" returnType="void">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+              
+      </class>
+            
+      <class modifiers="public" name="PackageFormat">
+                
+        <field modifiers="private" name="name" type="String"/>
+                
+        <field modifiers="private" name="classes" type="List"/>
+                
+        <method modifiers="public" name="getName" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="toString" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getClasses" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+              
+      </class>
+            
+      <class modifiers="public" name="ProjectFormat">
+                
+        <field modifiers="private" name="name" type="String"/>
+                
+        <field modifiers="private" name="packages" type="List"/>
+                
+        <method modifiers="public" name="getName" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="toString" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getPackages" returnType="List">
+                    
+          <parameter type=""/>
+                  
+        </method>
+              
+      </class>
+            
+      <class modifiers="public" name="RelationshipFormat">
+                
+        <field modifiers="private" name="fromClass" type="String"/>
+                
+        <field modifiers="private" name="toClass" type="String"/>
+                
+        <field modifiers="private" name="relationshipType" type="String"/>
+                
+        <method modifiers="public" name="getRelationshipType" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="setRelationshipType" returnType="void">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="setFromClass" returnType="void">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getToClass" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="setToClass" returnType="void">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getFromClass" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="toString" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+              
+      </class>
+          
+    </package>
+        
+    <package name="org.mql.java.models">
+            
+      <class modifiers="" name="Iter">
+                
+        <field modifiers="private" name="pointer" type="LinkedList"/>
+                
+        <field modifiers="final" name="this$0" type="LinkedList"/>
+                
+        <method modifiers="public" name="hasNext" returnType="boolean">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="next" returnType="Object">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <relationship from="Iter" to="Iterator" type="Implémentation"/>
+              
+      </class>
+            
+      <class modifiers="public" name="LinkedList">
+                
+        <field modifiers="private" name="value" type="Object"/>
+                
+        <field modifiers="private" name="next" type="LinkedList"/>
+                
+        <method modifiers="public" name="remove" returnType="Object">
+                    
+          <parameter type="int"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="size" returnType="int">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="get" returnType="Object">
+                    
+          <parameter type="int"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="add" returnType="void">
+                    
+          <parameter type="Object"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="iterator" returnType="Iterator">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="set" returnType="void">
+                    
+          <parameter type="int"/>
+                    
+          <parameter type="Object"/>
+                  
+        </method>
+                
+        <relationship from="LinkedList" to="List" type="Implémentation"/>
+                
+        <relationship from="LinkedList" to="Iterable" type="Implémentation"/>
+              
+      </class>
+            
+      <class modifiers="public abstract interface" name="List">
+                
+        <method modifiers="public abstract" name="remove" returnType="Object">
+                    
+          <parameter type="int"/>
+                  
+        </method>
+                
+        <method modifiers="public abstract" name="size" returnType="int">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public abstract" name="get" returnType="Object">
+                    
+          <parameter type="int"/>
+                  
+        </method>
+                
+        <method modifiers="public abstract" name="add" returnType="void">
+                    
+          <parameter type="Object"/>
+                  
+        </method>
+                
+        <method modifiers="public abstract" name="set" returnType="void">
+                    
+          <parameter type="int"/>
+                    
+          <parameter type="Object"/>
+                  
+        </method>
+              
+      </class>
+          
+    </package>
+        
+    <package name="org.mql.java.ui">
+            
+      <class modifiers="public" name="ClassDiagramFrame">
+                
+        <relationship from="ClassDiagramFrame" to="JFrame" type="Extension"/>
+              
+      </class>
+            
+      <class modifiers="public" name="ClassDiagramPanel">
+                
+        <field modifiers="private" name="project" type="ProjectFormat"/>
+                
+        <field modifiers="private" name="classPositions" type="Map"/>
+                
+        <method modifiers="private" name="parseProject" returnType="ProjectFormat">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="protected" name="paintComponent" returnType="void">
+                    
+          <parameter type="Graphics"/>
+                  
+        </method>
+                
+        <method modifiers="private" name="drawRelationship" returnType="void">
+                    
+          <parameter type="Graphics2D"/>
+                    
+          <parameter type="RelationshipFormat"/>
+                  
+        </method>
+                
+        <method modifiers="private" name="drawClass" returnType="void">
+                    
+          <parameter type="Graphics2D"/>
+                    
+          <parameter type="ClassFormat"/>
+                    
+          <parameter type="int"/>
+                    
+          <parameter type="int"/>
+                  
+        </method>
+                
+        <relationship from="ClassDiagramPanel" to="ProjectFormat" type="Agrégation"/>
+                
+        <relationship from="ClassDiagramPanel" to="JPanel" type="Extension"/>
+                
+        <relationship from="ClassDiagramPanel" to="RelationshipFormat" type="Utilisation"/>
+                
+        <relationship from="ClassDiagramPanel" to="ClassFormat" type="Utilisation"/>
+              
+      </class>
+            
+      <class modifiers="public" name="MainFrame">
+                
+        <field modifiers="private" name="pathField" type="JTextField"/>
+                
+        <field modifiers="private" name="browseButton" type="JButton"/>
+                
+        <field modifiers="private" name="parseButton" type="JButton"/>
+                
+        <method modifiers="private" name="parseProject" returnType="void">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="private" name="chooseFolder" returnType="void">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="private" name="lambda$1" returnType="void">
+                    
+          <parameter type="ActionEvent"/>
+                  
+        </method>
+                
+        <method modifiers="private" name="lambda$0" returnType="void">
+                    
+          <parameter type="ActionEvent"/>
+                  
+        </method>
+                
+        <method modifiers="public static" name="main" returnType="void">
+                    
+          <parameter type="String[]"/>
+                  
+        </method>
+                
+        <relationship from="MainFrame" to="JFrame" type="Extension"/>
+              
+      </class>
+            
+      <class modifiers="public" name="RelationshipRender">
+                
+        <method modifiers="public static" name="drawArrowhead" returnType="void">
+                    
+          <parameter type="Graphics2D"/>
+                    
+          <parameter type="Point"/>
+                    
+          <parameter type="Point"/>
+                  
+        </method>
+              
+      </class>
+          
+    </package>
+        
+    <package name="org.mql.java.xmi">
+            
+      <class modifiers="public" name="XMITransformer">
+                
+        <method modifiers="public static" name="transformToXMI" returnType="void">
+                    
+          <parameter type="ProjectFormat"/>
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="private static" name="createClassElement" returnType="Element">
+                    
+          <parameter type="Document"/>
+                    
+          <parameter type="ClassFormat"/>
+                  
+        </method>
+                
+        <method modifiers="private static" name="createPackageElement" returnType="Element">
+                    
+          <parameter type="Document"/>
+                    
+          <parameter type="PackageFormat"/>
+                  
+        </method>
+                
+        <relationship from="XMITransformer" to="ProjectFormat" type="Utilisation"/>
+                
+        <relationship from="XMITransformer" to="Document" type="Utilisation"/>
+                
+        <relationship from="XMITransformer" to="ClassFormat" type="Utilisation"/>
+                
+        <relationship from="XMITransformer" to="Document" type="Utilisation"/>
+                
+        <relationship from="XMITransformer" to="PackageFormat" type="Utilisation"/>
+              
+      </class>
+          
+    </package>
+        
+    <package name="org.mql.java.xml">
+            
+      <class modifiers="public" name="ProjectXMLParser">
+                
+        <method modifiers="private" name="parseModifiers" returnType="List">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="private" name="parseRelationship" returnType="RelationshipFormat">
+                    
+          <parameter type="XMLNode"/>
+                  
+        </method>
+                
+        <method modifiers="private" name="parsePackage" returnType="PackageFormat">
+                    
+          <parameter type="XMLNode"/>
+                  
+        </method>
+                
+        <method modifiers="private" name="parseClass" returnType="ClassFormat">
+                    
+          <parameter type="XMLNode"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="parse" returnType="ProjectFormat">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="private" name="parseMethod" returnType="MethodFormat">
+                    
+          <parameter type="XMLNode"/>
+                  
+        </method>
+                
+        <method modifiers="private" name="parseField" returnType="FieldFormat">
+                    
+          <parameter type="XMLNode"/>
+                  
+        </method>
+              
+      </class>
+            
+      <class modifiers="public" name="XMLNode">
+                
+        <field modifiers="private" name="node" type="Node"/>
+                
+        <method modifiers="public" name="intAttribute" returnType="int">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getName" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="getValue" returnType="String">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <method modifiers="public" name="child" returnType="XMLNode">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="attribute" returnType="String">
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="public" name="children" returnType="XMLNode[]">
+                    
+          <parameter type=""/>
+                  
+        </method>
+                
+        <relationship from="XMLNode" to="Node" type="Agrégation"/>
+              
+      </class>
+            
+      <class modifiers="public" name="XMLTransformer">
+                
+        <method modifiers="private static" name="createFieldElement" returnType="Element">
+                    
+          <parameter type="Document"/>
+                    
+          <parameter type="FieldFormat"/>
+                  
+        </method>
+                
+        <method modifiers="public static" name="transformToXML" returnType="void">
+                    
+          <parameter type="ProjectFormat"/>
+                    
+          <parameter type="String"/>
+                  
+        </method>
+                
+        <method modifiers="private static" name="createClassElement" returnType="Element">
+                    
+          <parameter type="Document"/>
+                    
+          <parameter type="ClassFormat"/>
+                  
+        </method>
+                
+        <method modifiers="private static" name="createRelationshipElement" returnType="Element">
+                    
+          <parameter type="Document"/>
+                    
+          <parameter type="RelationshipFormat"/>
+                  
+        </method>
+                
+        <method modifiers="private static" name="createPackageElement" returnType="Element">
+                    
+          <parameter type="Document"/>
+                    
+          <parameter type="PackageFormat"/>
+                  
+        </method>
+                
+        <method modifiers="private static" name="createMethodElement" returnType="Element">
+                    
+          <parameter type="Document"/>
+                    
+          <parameter type="MethodFormat"/>
+                  
+        </method>
+                
+        <method modifiers="private static" name="createProjectElement" returnType="Element">
+                    
+          <parameter type="Document"/>
+                    
+          <parameter type="ProjectFormat"/>
+                  
+        </method>
+                
+        <relationship from="XMLTransformer" to="Document" type="Utilisation"/>
+                
+        <relationship from="XMLTransformer" to="FieldFormat" type="Utilisation"/>
+                
+        <relationship from="XMLTransformer" to="ProjectFormat" type="Utilisation"/>
+                
+        <relationship from="XMLTransformer" to="Document" type="Utilisation"/>
+                
+        <relationship from="XMLTransformer" to="ClassFormat" type="Utilisation"/>
+                
+        <relationship from="XMLTransformer" to="Document" type="Utilisation"/>
+                
+        <relationship from="XMLTransformer" to="RelationshipFormat" type="Utilisation"/>
+                
+        <relationship from="XMLTransformer" to="Document" type="Utilisation"/>
+                
+        <relationship from="XMLTransformer" to="PackageFormat" type="Utilisation"/>
+                
+        <relationship from="XMLTransformer" to="Document" type="Utilisation"/>
+                
+        <relationship from="XMLTransformer" to="MethodFormat" type="Utilisation"/>
+                
+        <relationship from="XMLTransformer" to="Document" type="Utilisation"/>
+                
+        <relationship from="XMLTransformer" to="ProjectFormat" type="Utilisation"/>
+              
+      </class>
+          
+    </package>
+      
+  </project>
+  
+  <project name="C:\Users\Chaimae\eclipse-workspace\model-for-testing">
+    <package name="org.mql.java.models">
+      <class modifiers="public" name="Enterprise">
+        <field modifiers="" name="name" type="String"/>
+        <method modifiers="public" name="getName" returnType="String">
+          <parameter type=""/>
+        </method>
+        <method modifiers="public" name="toString" returnType="String">
+          <parameter type=""/>
+        </method>
+        <method modifiers="public" name="setName" returnType="void">
+          <parameter type="String"/>
+        </method>
+        <relationship from="Enterprise" to="Person" type="Extension"/>
+      </class>
+      <class modifiers="public" name="Height">
+        <field modifiers="" name="height" type="int"/>
+        <method modifiers="public" name="setHeight" returnType="void">
+          <parameter type="int"/>
+        </method>
+        <method modifiers="public" name="getHeight" returnType="int">
+          <parameter type=""/>
+        </method>
+      </class>
+      <class modifiers="public" name="Job">
+        <field modifiers="" name="salary" type="int"/>
+        <field modifiers="" name="title" type="String"/>
+        <method modifiers="public" name="getSalary" returnType="int">
+          <parameter type=""/>
+        </method>
+        <method modifiers="public" name="setSalary" returnType="void">
+          <parameter type="int"/>
+        </method>
+        <method modifiers="public" name="getTitle" returnType="String">
+          <parameter type=""/>
+        </method>
+        <method modifiers="public" name="setTitle" returnType="void">
+          <parameter type="String"/>
+        </method>
+      </class>
+      <class modifiers="public" name="Person">
+        <field modifiers="" name="height" type="Height"/>
+        <field modifiers="" name="weight" type="Weight"/>
+        <field modifiers="" name="job" type="Job"/>
+        <method modifiers="public" name="setHeight" returnType="void">
+          <parameter type="Height"/>
+        </method>
+        <method modifiers="public" name="getJob" returnType="Job">
+          <parameter type=""/>
+        </method>
+        <method modifiers="public" name="setJob" returnType="void">
+          <parameter type="Job"/>
+        </method>
+        <method modifiers="public" name="getWeight" returnType="Weight">
+          <parameter type=""/>
+        </method>
+        <method modifiers="public" name="getHeight" returnType="Height">
+          <parameter type=""/>
+        </method>
+        <method modifiers="public" name="setWeight" returnType="void">
+          <parameter type="Weight"/>
+        </method>
+        <method modifiers="public" name="toString" returnType="String">
+          <parameter type=""/>
+        </method>
+        <relationship from="Person" to="Height" type="Aggregation"/>
+        <relationship from="Person" to="Weight" type="Aggregation"/>
+        <relationship from="Person" to="Job" type="Aggregation"/>
+      </class>
+      <class modifiers="public" name="Weight">
+        <field modifiers="" name="weight" type="int"/>
+        <method modifiers="public" name="getWeight" returnType="int">
+          <parameter type=""/>
+        </method>
+        <method modifiers="public" name="setWeight" returnType="void">
+          <parameter type="int"/>
+        </method>
+      </class>
+    </package>
+  </project>
+</projects>

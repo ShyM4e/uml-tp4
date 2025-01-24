@@ -5,23 +5,23 @@ import java.util.List;
 import java.util.Vector;
 
 public class PackageExplorer {
-	
-	private List<String> foundPackages = new Vector<>();
+
+    private List<String> foundPackages = new Vector<>();
 
     public PackageExplorer(String src) {
         scan(src);
     }
 
     public List<String> getFoundPackages() {
-        return foundPackages; 
+        return foundPackages;
     }
 
     public void scan(String source) {
-        String path = "C:\\Users\\Chaimae\\eclipse-workspace\\" + source + "\\src";
-        File src = new File(path);
+        String srcPath = source + File.separator + "src";
+        File src = new File(srcPath);
 
-        if (!src.exists()) {
-            System.out.println("Le fichier source n'existe pas");
+        if (!src.exists() || !src.isDirectory()) {
+            System.out.println("The source directory does not exist or is not accessible: " + srcPath);
             return;
         }
 
@@ -30,44 +30,44 @@ public class PackageExplorer {
             for (File file : content) {
                 if (file.isDirectory()) {
                     String packageName = file.getPath()
-                            .replace(path + File.separator, "")
+                            .substring(src.getPath().length() + 1) 
                             .replace(File.separator, ".");
-                    scanSubPackages(file, packageName);
+                    addPackageAndScanSubPackages(file, packageName); 
                 }
             }
         }
     }
 
-    public void scanSubPackages(File directory, String packageName) {
-        File[] content = directory.listFiles();
+    public void addPackageAndScanSubPackages(File directory, String packageName) {
+        foundPackages.add(packageName);
 
+        if (directory == null || !directory.exists() || !directory.isDirectory()) {
+            System.out.println("Directory does not exist or is not accessible: " + directory.getPath());
+            return;
+        }
+
+        File[] content = directory.listFiles();
         if (content == null || content.length == 0) {
             return;
         }
 
-        boolean hasSubPackage = false;
-
         for (File file : content) {
             if (file.isDirectory()) {
-                hasSubPackage = true;
-                scanSubPackages(file, packageName + "." + file.getName());
+                addPackageAndScanSubPackages(file, packageName + "." + file.getName());
             }
-        }
-
-        if (!hasSubPackage) {
-            foundPackages.add(packageName);
         }
     }
 
     public static void main(String[] args) {
-    	String projectName = "p05-functional-programming"; 
+        String projectName = "C:\\Users\\Chaimae\\eclipse-workspace\\p05-functional-programming";
 
         PackageExplorer explorer = new PackageExplorer(projectName);
         List<String> packages = explorer.getFoundPackages();
 
-        System.out.println("Packages trouvés :");
+        System.out.println("Packages found:");
         for (String pkg : packages) {
-            PackageParser.scan(projectName, pkg);
+            System.out.println(pkg);
+            System.out.println(PackageParser.scan(projectName, pkg));
         }
     }
 }

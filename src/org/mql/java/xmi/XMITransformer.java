@@ -26,7 +26,6 @@ public class XMITransformer {
 	        DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 	        Document doc = docBuilder.newDocument();
 
-	        // Create the root XMI element
 	        Element xmiRoot = doc.createElement("xmi:XMI");
             xmiRoot.setAttribute("xmi:version", "2.5");
             xmiRoot.setAttribute("xmlns:xmi", "http://www.omg.org/spec/XMI/20131001");
@@ -39,19 +38,16 @@ public class XMITransformer {
             );
             doc.appendChild(xmiRoot);
 
-	        // Create UML Model element
 	        Element umlModel = doc.createElement("uml:Model");
 	        umlModel.setAttribute("xmi:id", "model1");
 	        umlModel.setAttribute("name", project.getName());
 	        xmiRoot.appendChild(umlModel);
 
-	        // Add packages to the model
 	        for (PackageFormat pkg : project.getPackages()) {
 	            Element umlPackage = createPackageElement(doc, pkg);
 	            umlModel.appendChild(umlPackage);
 	        }
 
-	        // Write the XMI file
 	        TransformerFactory transformerFactory = TransformerFactory.newInstance();
 	        Transformer transformer = transformerFactory.newTransformer();
 	        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -74,7 +70,6 @@ public class XMITransformer {
         umlPackage.setAttribute("xmi:id", "pkg_" + pkg.getName());
         umlPackage.setAttribute("name", pkg.getName());
 
-        // Add classes to the package
         for (ClassFormat cls : pkg.getClasses()) {
             Element umlClass = createClassElement(doc, cls);
             umlPackage.appendChild(umlClass);
@@ -89,7 +84,6 @@ public class XMITransformer {
         umlClass.setAttribute("xmi:id", "cls_" + cls.getName());
         umlClass.setAttribute("name", cls.getName());
 
-        // Add fields to the class
         for (FieldFormat field : cls.getFields()) {
             Element umlField = doc.createElement("ownedAttribute");
             umlField.setAttribute("xmi:type", "uml:Property");
@@ -99,7 +93,6 @@ public class XMITransformer {
             umlClass.appendChild(umlField);
         }
 
-        // Add relationships to the class
         for (RelationshipFormat relationship : cls.getRelationships()) {
             Element umlRelationship = doc.createElement("packagedElement");
             umlRelationship.setAttribute("xmi:type", "uml:Association");

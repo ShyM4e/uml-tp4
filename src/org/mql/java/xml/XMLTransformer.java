@@ -23,25 +23,37 @@ public class XMLTransformer {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-            Document doc = docBuilder.newDocument();
+            Document doc;
 
-            Element rootElement = doc.createElement("project");
-            rootElement.setAttribute("name", project.getName());
-            doc.appendChild(rootElement);
+            File xmlFile = new File(outputPath);
+            Element rootElement;
 
-            for (PackageFormat pkg : project.getPackages()) {
-                Element packageElement = createPackageElement(doc, pkg);
-                rootElement.appendChild(packageElement);
+           
+            if (xmlFile.exists()) {
+                doc = docBuilder.parse(xmlFile);
+                rootElement = doc.getDocumentElement();
+
+                if (!rootElement.getNodeName().equals("projects")) {
+                    throw new RuntimeException("Invalid root element in the existing XML file. Expected <projects>.");
+                }
+            } else {
+               
+                doc = docBuilder.newDocument();
+                rootElement = doc.createElement("projects");
+                doc.appendChild(rootElement);
             }
+
+            Element projectElement = createProjectElement(doc, project);
+            rootElement.appendChild(projectElement);
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
 
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes"); 
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File(outputPath));
+            StreamResult result = new StreamResult(xmlFile);
 
             transformer.transform(source, result);
 
@@ -52,11 +64,23 @@ public class XMLTransformer {
         }
     }
 
+    private static Element createProjectElement(Document doc, ProjectFormat project) {
+        Element projectElement = doc.createElement("project");
+        projectElement.setAttribute("name", project.getName());
+
+        
+        for (PackageFormat pkg : project.getPackages()) {
+            Element packageElement = createPackageElement(doc, pkg);
+            projectElement.appendChild(packageElement);
+        }
+
+        return projectElement;
+    }
+
     private static Element createPackageElement(Document doc, PackageFormat pkg) {
         Element packageElement = doc.createElement("package");
         packageElement.setAttribute("name", pkg.getName());
 
-        // Add classes
         for (ClassFormat cls : pkg.getClasses()) {
             Element classElement = createClassElement(doc, cls);
             packageElement.appendChild(classElement);
@@ -70,19 +94,16 @@ public class XMLTransformer {
         classElement.setAttribute("name", cls.getName());
         classElement.setAttribute("modifiers", String.join(" ", cls.getModifiers()));
 
-        // Add fields
         for (FieldFormat field : cls.getFields()) {
             Element fieldElement = createFieldElement(doc, field);
             classElement.appendChild(fieldElement);
         }
 
-        // Add methods
         for (MethodFormat method : cls.getMethods()) {
             Element methodElement = createMethodElement(doc, method);
             classElement.appendChild(methodElement);
         }
 
-        // Add relationships
         for (RelationshipFormat relationship : cls.getRelationships()) {
             Element relationshipElement = createRelationshipElement(doc, relationship);
             classElement.appendChild(relationshipElement);
@@ -105,7 +126,6 @@ public class XMLTransformer {
         methodElement.setAttribute("returnType", method.getReturnType());
         methodElement.setAttribute("modifiers", String.join(" ", method.getModifiers()));
 
-        // Add parameters
         for (String param : method.getParamType()) {
             Element paramElement = doc.createElement("parameter");
             paramElement.setAttribute("type", param);

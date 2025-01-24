@@ -3,9 +3,6 @@ package org.mql.java.format;
 import java.util.List;
 
 
-
-
-
 public class ClassFormat {
 	private String name;
 	private List<String> modifiers;

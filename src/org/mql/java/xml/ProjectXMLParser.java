@@ -14,31 +14,46 @@ public class ProjectXMLParser {
     public ProjectXMLParser() {
     }
 
-    public ProjectFormat parse(String source) {
-        XMLNode root = new XMLNode(source); 
-        String projectName = root.attribute("name");
+    public List<ProjectFormat> parse(String source) {
+        XMLNode root = new XMLNode(source);
+        List<ProjectFormat> projects = new ArrayList<>();
+
+        // Parse all projects in the XML file
+        for (XMLNode projectNode : root.children()) {
+            if (projectNode.getName().equals("project")) {
+                projects.add(parseProject(projectNode));
+            }
+        }
+
+        return projects; 
+    }
+
+    private ProjectFormat parseProject(XMLNode projectNode) {
+        String projectName = projectNode.attribute("name");
         List<PackageFormat> packages = new ArrayList<>();
 
-        for (XMLNode packageNode : root.children()) { 
-            packages.add(parsePackage(packageNode));
+        for (XMLNode packageNode : projectNode.children()) {
+            if (packageNode.getName().equals("package")) {
+                packages.add(parsePackage(packageNode));
+            }
         }
 
         return new ProjectFormat(projectName, packages);
     }
 
-    
     private PackageFormat parsePackage(XMLNode packageNode) {
         String packageName = packageNode.attribute("name");
         List<ClassFormat> classes = new ArrayList<>();
 
-        for (XMLNode classNode : packageNode.children()) { 
-            classes.add(parseClass(classNode));
+        for (XMLNode classNode : packageNode.children()) {
+            if (classNode.getName().equals("class")) {
+                classes.add(parseClass(classNode));
+            }
         }
 
         return new PackageFormat(packageName, classes);
     }
 
-    
     private ClassFormat parseClass(XMLNode classNode) {
         String className = classNode.attribute("name");
         List<String> modifiers = parseModifiers(classNode.attribute("modifiers"));
@@ -63,7 +78,6 @@ public class ProjectXMLParser {
         return new ClassFormat(className, modifiers, fields, methods, relationships);
     }
 
-    
     private FieldFormat parseField(XMLNode fieldNode) {
         String fieldName = fieldNode.attribute("name");
         String fieldType = fieldNode.attribute("type");
@@ -71,7 +85,6 @@ public class ProjectXMLParser {
         return new FieldFormat(fieldName, fieldType, modifiers);
     }
 
-    
     private MethodFormat parseMethod(XMLNode methodNode) {
         String methodName = methodNode.attribute("name");
         String returnType = methodNode.attribute("returnType");
@@ -79,13 +92,14 @@ public class ProjectXMLParser {
         List<String> paramTypes = new ArrayList<>();
 
         for (XMLNode paramNode : methodNode.children()) {
-            paramTypes.add(paramNode.attribute("type"));
+            if (paramNode.getName().equals("parameter")) {
+                paramTypes.add(paramNode.attribute("type"));
+            }
         }
 
         return new MethodFormat(methodName, returnType, modifiers, paramTypes);
     }
 
-    
     private RelationshipFormat parseRelationship(XMLNode relationshipNode) {
         String fromClass = relationshipNode.attribute("from");
         String toClass = relationshipNode.attribute("to");
@@ -93,7 +107,6 @@ public class ProjectXMLParser {
         return new RelationshipFormat(fromClass, toClass, relationshipType);
     }
 
-    
     private List<String> parseModifiers(String modifiers) {
         List<String> list = new ArrayList<>();
         if (modifiers != null && !modifiers.isEmpty()) {

@@ -12,14 +12,18 @@ import java.util.Vector;
 public class ClassParser {
 	public String src;
 	Class<?> cls;
-	public ClassParser(String src) {
-		this.src=src;
-		try {
-			cls=Class.forName(src);
-		} catch (ClassNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
-	}
+	
+	public ClassParser(String src, String classPath) {
+        this.src = src;
+        try {
+            CustomClassLoader customClassLoader = new CustomClassLoader(classPath);
+            cls = customClassLoader.loadClass(src);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class not found: " + src);
+            e.printStackTrace();
+        }
+    }
+ 
 	public List<String[]> getClassInfo() {
         List<String[]> info = new ArrayList<>();
        
@@ -89,43 +93,44 @@ public class ClassParser {
     }
     
     public List<String[]> extractRelationships() {
-        	List<String[]> relationships = new Vector<>();
-            Package classPackage = cls.getPackage();
+        List<String[]> relationships = new Vector<>();
+        Package classPackage = cls.getPackage();
 
-            for (Field field : cls.getDeclaredFields()) {
-                Class<?> fieldType = field.getType();
-                Package fieldPackage = fieldType.getPackage();
+        for (Field field : cls.getDeclaredFields()) {
+            Class<?> fieldType = field.getType();
+            Package fieldPackage = fieldType.getPackage();
 
-                if (fieldPackage != null && classPackage != null && 
-                    !fieldPackage.getName().equals(classPackage.getName()) && !fieldPackage.getName().startsWith("java.") 
-                    && !fieldPackage.getName().startsWith("javax.")) {
-                    relationships.add(new String[]{"Agrégation", fieldType.getSimpleName()});
+            boolean isCollection = java.util.Collection.class.isAssignableFrom(fieldType) || 
+                                   fieldType.isArray();
+
+            if ((fieldPackage != null && !fieldPackage.getName().startsWith("java.") && 
+                 !fieldPackage.getName().startsWith("javax.")) || isCollection) {
+                relationships.add(new String[]{"Aggregation", fieldType.getSimpleName()});
+            }
+        }
+
+        if (cls.getSuperclass() != null && !cls.getSuperclass().getSimpleName().equals("Object")) {
+            relationships.add(new String[]{"Extension", cls.getSuperclass().getSimpleName()});
+        }
+
+        for (Class<?> iface : cls.getInterfaces()) {
+            relationships.add(new String[]{"Implementation", iface.getSimpleName()});
+        }
+
+        for (Method method : cls.getDeclaredMethods()) {
+            for (Class<?> paramType : method.getParameterTypes()) {
+                Package paramPackage = paramType.getPackage();
+
+                if (paramPackage != null && !paramPackage.getName().startsWith("java.") && 
+                    !paramPackage.getName().startsWith("javax.") && 
+                    !paramPackage.getName().equals(classPackage.getName())) {
+                    relationships.add(new String[]{"Utilisation", paramType.getSimpleName()});
                 }
             }
-
-            if (cls.getSuperclass() != null && !cls.getSuperclass().getSimpleName().equals("Object") ) {
-                relationships.add(new String[]{"Extension", cls.getSuperclass().getSimpleName()});
-            }
-
-           
-            for (Class<?> iface : cls.getInterfaces()) {
-                relationships.add(new String[]{"Implémentation", iface.getSimpleName()});
-            }
-
-            for (Method method : cls.getDeclaredMethods()) {
-                for (Class<?> paramType : method.getParameterTypes()) {
-                    Package paramPackage = paramType.getPackage();
-
-                    if (paramPackage != null && classPackage != null && !paramPackage.getName().startsWith("java.")&& !paramPackage.getName().startsWith("javax.")
-                        && !paramPackage.getName().equals(classPackage.getName())) {
-                        relationships.add(new String[]{"Utilisation", paramType.getSimpleName()});
-                    }
-                }
-            }
+        }
 
         return relationships;
     }
-
 
    
 }

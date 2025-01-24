@@ -14,7 +14,7 @@ public class PackageParser {
 
 	 public static List<String> scan(String projectName, String packageName) {
 		 	List<String> classes=new Vector<String>();
-		 	String projectPath = "C:\\Users\\Chaimae\\eclipse-workspace\\" + projectName;
+		 	String projectPath = projectName;
 	        String classPath = projectPath + "\\bin";
 	        String packagePath = packageName.replace(".", "\\");
 	        String fullPath = classPath + "\\" + packagePath;
